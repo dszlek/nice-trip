@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Zajebisty Męski Wypad do Nicei – 20 marca 2026</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      min-height: 100vh;
+      color: #ffffff;
+      background: linear-gradient(135deg, #031b34, #0b4f6c, #3282b8, #bbe1fa);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .page {
+      max-width: 900px;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.45);
+      border-radius: 24px;
+      padding: 30px 20px 30px 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.45);
+      backdrop-filter: blur(12px);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    header h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      background: linear-gradient(45deg, #ffdd00, #ff8c00);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 20px rgba(0,0,0,0.8);
+      margin-bottom: 8px;
+    }
+
+    header p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 1.3fr 1.2fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 720px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Countdown */
+    .countdown-box {
+      text-align: center;
+      padding: 18px;
+      border-radius: 18px;
+      background: radial-gradient(circle at top, rgba(255,255,255,0.12), transparent 60%);
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .countdown-title {
+      font-size: 1.1rem;
+      margin-bottom: 14px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      opacity: 0.85;
+    }
+
+    .countdown {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(60px, 1fr));
+      gap: 10px;
+      justify-items: center;
+    }
+
+    @media (max-width: 480px) {
+      .countdown {
+        grid-template-columns: repeat(2, minmax(80px, 1fr));
+      }
+    }
+
+    .time-unit {
+      background: rgba(5, 19, 35, 0.85);
+      border-radius: 16px;
+      padding: 12px 8px;
+      border: 1px solid rgba(255,255,255,0.15);
+      min-width: 80px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .time-unit::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(255,255,255,0.25), transparent 55%);
+      opacity: 0;
+      transition: opacity 0.3s ease-out;
+    }
+
+    .time-unit:hover::before {
+      opacity: 1;
+    }
+
+    .time-number {
+      font-size: 2rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .time-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      opacity: 0.75;
+      margin-top: 4px;
+    }
+
+    .trip-date {
+      margin-top: 14px;
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
+    .done-message {
+      font-size: 1.5rem;
+      font-weight: 600;
+      padding: 10px;
+      animation: pulse 1.2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    /* Highlights */
+    .highlights-box {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(3, 27, 52, 0.9);
+      border: 1px solid rgba(255,255,255,0.15);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.40);
+    }
+
+    .highlights-title {
+      font-size: 1.05rem;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      opacity: 0.9;
+    }
+
+    .highlights-sub {
+      font-size: 0.9rem;
+      margin-bottom: 10px;
+      opacity: 0.85;
+    }
+
+    .highlights-list {
+      list-style: none;
+      display: grid;
+      gap: 10px;
+    }
+
+    .highlight-item {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 10px 10px;
+      border-radius: 14px;
+      background: radial-gradient(circle at left, rgba(255,255,255,0.12), transparent 70%);
+      border: 1px solid rgba(255,255,255,0.12);
+    }
+
+    .highlight-icon {
+      font-size: 1.4rem;
+      line-height: 1;
+      margin-top: 2px;
+    }
+
+    .highlight-main {
+      font-size: 0.95rem;
+      font-weight: 600;
+    }
+
+    .highlight-subtext {
+      font-size: 0.8rem;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 18px;
+      font-size: 0.8rem;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <h1>Zajebisty Męski Wypad do Nicei</h1>
+      <p>3 noce w raju + mecz Nice – PSG • Start: 20 marca 2026</p>
+    </header>
+
+    <div class="layout">
+      <!-- Countdown -->
+      <section class="countdown-box">
+        <div class="countdown-title">Odliczanie do wylotu</div>
+        <div id="countdown" class="countdown">
+          <div class="time-unit">
+            <div id="days" class="time-number">00</div>
+            <div class="time-label">Dni</div>
+          </div>
+          <div class="time-unit">
+            <div id="hours" class="time-number">00</div>
+            <div class="time-label">Godziny</div>
+          </div>
+          <div class="time-unit">
+            <div id="minutes" class="time-number">00</div>
+            <div class="time-label">Minuty</div>
+          </div>
+          <div class="time-unit">
+            <div id="seconds" class="time-number">00</div>
+            <div class="time-label">Sekundy</div>
+          </div>
+        </div>
+        <div class="trip-date">Cel: 20.03.2026, 09:00 (czas Nicei)</div>
+      </section>
+
+      <!-- Highlights -->
+      <section class="highlights-box">
+        <div class="highlights-title">Plan: 3 noce w raju</div>
+        <div class="highlights-sub">Krótko, intensywnie i na maksa męsko.</div>
+        <ul class="highlights-list">
+          <li class="highlight-item">
+            <div class="highlight-icon">🌊</div>
+            <div>
+              <div class="highlight-main">Promenada Anglików & plaża</div>
+              <div class="highlight-subtext">
+                Poranny chill nad morzem, kawa z widokiem i pierwsze zdjęcia z Nicei.
+              </div>
+            </div>
+          </li>
+          <li class="highlight-item">
+            <div class="highlight-icon">🍷</div>
+            <div>
+              <div class="highlight-main">Wieczorny vibe w starym mieście</div>
+              <div class="highlight-subtext">
+                Lokalne wino, dobre jedzenie i zero pośpiechu – tylko ekipa i klimat.
+              </div>
+            </div>
+          </li>
+          <li class="highlight-item">
+            <div class="highlight-icon">⚽</div>
+            <div>
+              <div class="highlight-main">Mecz Nice – PSG</div>
+              <div class="highlight-subtext">
+                Wielkie granie na żywo: stadion, atmosfera, gole i konkretne emocje.
+              </div>
+            </div>
+          </li>
+          <li class="highlight-item">
+            <div class="highlight-icon">🔥</div>
+            <div>
+              <div class="highlight-main">Męski reset</div>
+              <div class="highlight-subtext">
+                3 dni totalnego resetu od pracy i obowiązków – tylko wypad, śmiech i dobre historie.
+              </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+    <footer>
+      Jeśli odliczanie się zatrzyma – znaczy, że czas lecieć. ✈️
+    </footer>
+  </div>
+
+  <script>
+    // Ustaw docelową datę i godzinę (dostosuj godzinę jeśli trzeba)
+    const target = new Date("2026-03-20T09:00:00+01:00").getTime();
+
+    const daysEl = document.getElementById("days");
+    const hoursEl = document.getElementById("hours");
+    const minutesEl = document.getElementById("minutes");
+    const secondsEl = document.getElementById("seconds");
+    const countdownContainer = document.getElementById("countdown");
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = target - now;
+
+      if (diff <= 0) {
+        countdownContainer.innerHTML =
+          '<div class="done-message">LECIMY! 🔥✈️ Nice czeka!</div>';
+        return;
+      }
+
+      const totalSeconds = Math.floor(diff / 1000);
+      const days = Math.floor(totalSeconds / (60 * 60 * 24));
+      const hours = Math.floor((totalSeconds % (60 * 60 * 24)) / (60 * 60));
+      const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+      const seconds = totalSeconds % 60;
+
+      daysEl.textContent = String(days).padStart(2, "0");
+      hoursEl.textContent = String(hours).padStart(2, "0");
+      minutesEl.textContent = String(minutes).padStart(2, "0");
+      secondsEl.textContent = String(seconds).padStart(2, "0");
+    }
+
+    updateCountdown();
+    setInterval(updateCountdown, 1000);
+  </script>
+</body>
+</html>
